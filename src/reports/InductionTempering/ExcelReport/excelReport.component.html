@@ -1,0 +1,145 @@
+<ul class="list">
+  <li>
+    <div>
+      <div class="labelTxtInLine medium">
+        <div class="border-shadow">
+          <div class="col-sm-12 grid_padding">
+            <form *ngIf="form" [formGroup]="form">
+              <div class="container-fluid">
+                <div class="panel-heading">
+                  <!--<i (click)="back()" id="btnback" class="fa fa-arrow-left" aria-hidden="true" title="Back"></i>-->
+                  <!--<h3 style="margin-left:40px;">-->
+                  <h3>
+                    {{this.report.DeviceCode}} : {{deviceInfo.Description}}
+                  </h3>
+                </div>
+                <div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="date" class="control-label required">Date :</label>
+                        <!--<input type="date" #selectedDate class="form-control" formControlName="sDate" required />-->
+                        <angular2-date-picker class="form-control" [(ngModel)]="date" [settings]="dateSettings" formControlName="sDate"></angular2-date-picker>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <div>
+                          <button class="btn btn-primary" (click)="onSubmit()">{{submitButtonText}}  <span [style.display]="Loading?'inline-block':'none'" class="{{spinnerClass}}"></span></button>
+                          &nbsp;
+                          <button class="btn btn-primary" *ngIf="machineData.length>0" (click)="exportExcel()">{{excelButttonText}}</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table #excelData class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th colspan="9">Daily Production Report Hourly</th>
+                      </tr>
+                      <tr>
+                        <th colspan="2">Device Code</th>
+                        <th colspan="7">{{report.DeviceCode}}</th>
+                      </tr>
+                      <tr>
+                        <th colspan="3">Start Date/Time</th>
+                        <th colspan="2">{{report.StartDate}}</th>
+                        <th colspan="2"></th>
+                        <th colspan="2"></th>
+                      </tr>
+                      <tr></tr>
+                      <tr></tr>
+                      <tr>
+                        <th>S.No.</th>
+                        <th width="170">Time</th>
+                        <th>Total Parts Produced ( Nos. )</th>
+                        <th>Good Job ( Nos. )</th>
+                        <th>Bad Job ( Nos. )</th>
+                        <th>Left Side Temperature (Min. ~ Max.)</th>
+                        <th>Right Side Temperature (Min. ~ Max.)</th>
+                        <th>Pitch Time (Min. ~ Max.)</th>
+                        <th>Production Stopage Time (in Min.)</th>
+                      </tr>
+                      <tr>
+                        <th colspan="2">Standard Values</th>
+                        <th class="text-right">{{getParameterStandardValue('part_count')}}</th>
+                        <th class="text-right">{{getParameterStandardValue('goodjob')}}</th>
+                        <th class="text-right">{{getParameterStandardValue('badjob')}}</th>
+                        <th>{{getParameterMinThreshold('leftsidejobtemperature')}} ~ {{getParameterMaxThreshold('leftsidejobtemperature')}}</th>
+                        <th>{{getParameterMinThreshold('rightsidejobtemperature')}} ~ {{getParameterMaxThreshold('rightsidejobtemperature')}}</th>
+                        <th>{{getParameterMinThreshold('cycletime')}} ~ {{getParameterMaxThreshold('cycletime')}}</th>
+                        <th class="text-right">0</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr [hidden]="!Loading">
+                        <td colspan="9" style="text-align:center;">
+                          <i class="{{spinnerClass}}"></i>
+                        </td>
+                      </tr>
+                      <tr *ngFor="let item of machineData; let i = index">
+                        <td>{{i +1}}</td>
+                        <td>{{item.Time.replace(":00 ", " ")}} ~ {{item.Time1.replace(":00 ", " ")}}</td>
+                        <td class="text-right">{{item.CumulativePartCount ==  0 ? "" : item.CumulativePartCount}}</td>
+                        <td class="text-right">{{item.CumulativePartCount == 0 ? "" :item.GoodJob}}</td>
+                        <td class="text-right"><span *ngIf="item.CumulativePartCount>0" [style.background]="checkValueIsStandard('badjob',item.BadJob) ? 'Yellow':'White'">{{item.BadJob}}</span></td>
+                        <td *ngIf="item.CumulativePartCount == 0"></td>
+                        <td *ngIf="item.CumulativePartCount == 0"></td>
+                        <td *ngIf="item.CumulativePartCount == 0"></td>
+                        <td *ngIf="item.CumulativePartCount == 0"></td>
+                        <td *ngIf="item.CumulativePartCount != 0">
+                          <span [style.background]="(getParameterMinThreshold('leftsidejobtemperature') > item.LeftSideJobTemperatureMin) && item.BadJob > 0 ? 'Yellow':'White'">
+                            {{item.LeftSideJobTemperatureMin}}
+                          </span>
+                          ~
+                          <span [style.background]="(getParameterMaxThreshold('leftsidejobtemperature') < item.LeftSideJobTemperatureMin) && item.BadJob > 0 ? 'Yellow':'White'">
+                            {{item.LeftSideJobTemperatureMax}}
+                          </span>
+                        </td>
+
+                        <td *ngIf="item.CumulativePartCount != 0">
+                          <span [style.background]="(getParameterMinThreshold('rightsidejobtemperature') >item.RightSideJobTemperatureMin) && item.BadJob >0 ? 'Yellow':'White'">
+                            {{item.RightSideJobTemperatureMin}}
+                          </span>
+                          ~
+                          <span [style.background]="(getParameterMaxThreshold('rightsidejobtemperature') < item.RightSideJobTemperatureMax) && item.BadJob >0 ? 'Yellow':'White'">
+                            {{item.RightSideJobTemperatureMax}}
+                          </span>
+                        </td>
+
+                        <td *ngIf="item.CumulativePartCount != 0">
+                          {{item.CycleTimeMin}}~{{item.CycleTimeMax}}
+                          <!--<span [style.background]="getParameterMinThreshold('cycletime') > item.CycleTimeMin ? 'Yellow':'White'">{{item.CycleTimeMin}}</span>
+    ~
+    <span [style.background]="getParameterMinThreshold('cycletime') < item.CycleTimeMax ? 'Yellow':'White'">{{item.CycleTimeMax}}</span>-->
+                        </td>
+                        <td class="text-right" *ngIf="item.CumulativePartCount != 0">{{item.ProductionStopageTimeInMin}}</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr *ngFor="let item of Total;" style="font-weight: bold;">
+                        <th colspan="2">Total</th>
+                        <td class="text-right ng-binding">{{item.CumulativePartCount}}</td>
+                        <td class="text-right ng-binding">{{item.GoodJob}}</td>
+                        <td class="text-right ng-binding">{{item.BadJob}}</td>
+                        <td class="ng-binding">{{item.LeftSideJobTemperatureMin}} ~ {{item.LeftSideJobTemperatureMax}}</td>
+                        <td class="ng-binding">{{item.RightSideJobTemperatureMin}} ~ {{item.RightSideJobTemperatureMax}}</td>
+                        <td class="ng-binding">{{item.CycleTimeMin}} ~ {{item.CycleTimeMax}}</td>
+                        <td class="text-right ng-binding">{{item.ProductionStopageTimeInMin}}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

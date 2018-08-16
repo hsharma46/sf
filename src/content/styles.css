@@ -1,0 +1,811 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  min-width: 320px;
+  background: #f1f3f7;
+  color: #444444;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: right;
+  background: #f7f7f7;
+  padding: 5px;
+  transition: left 0.2s;
+  border-top: 1px solid #dddddd;
+}
+
+header {
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  transition: left 0.2s;
+}
+
+.rotate {
+  transition: all 0.5s;
+  -webkit-transform: rotate(180deg);
+}
+
+#container {
+  min-height: 100%;
+  overflow-x: hidden;
+  margin-left: 0;
+  transition: margin-left 0.2s;
+  margin-top: 0;
+  padding-top: 108px;
+  /*border:1px solid red;*/
+}
+
+.medium {
+  font-size: 87.5%;
+}
+
+.cntWrap {
+  margin: 0 auto;
+  padding: 0 5px;
+  -webkit-transition: padding 0.2s ease;
+  -moz-transition: padding 0.2s ease;
+  transition: padding 0.2s ease;
+}
+
+
+.list {
+  background: #fff;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+}
+
+.labelTxtInline label {
+  margin-bottom: 0;
+}
+
+.table {
+  font-weight: 400;
+  padding: 4px;
+  margin-bottom: 0;
+}
+
+.rowPadding {
+  padding: 4px;
+}
+
+.table th {
+  background: #2f3745;
+  color: #fff;
+  border-top: none;
+  border-right: 1px solid #fff;
+  font-weight: 400;
+}
+
+.table > tbody > tr > td > a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.table td, .table > tbody > tr > td {
+  border-right: 1px solid #ededed;
+  border-top: 1px solid #ededed;
+}
+
+.table tr:last-child {
+  /*border-bottom: 1px solid #ededed;*/
+}
+
+.table tr td:last-child {
+  border-right: none;
+}
+
+.form-horizontal .form-group {
+  margin: 0px 0px 10px 0px;
+}
+
+.h3 {
+  text-decoration: underline;
+}
+
+.border-shadow {
+  background: white;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 3px 0px;
+  padding: 10px;
+}
+
+.details {
+}
+
+  .details > i :first-of-type {
+    font-size: 20px;
+  }
+
+  .details > i {
+    font-size: 30px;
+  }
+
+    .details > i[class*=" pointer"] {
+      cursor: pointer;
+    }
+
+
+.chip {
+  display: inline-block;
+  height: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.89);
+  line-height: 24px;
+  padding: 0 15px;
+  border: 1px solid darkgrey;
+  border-radius: 14px;
+  background-color: White;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.grid_padding {
+  padding: 0px;
+}
+
+.closebtn {
+  padding-left: 10px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+  .closebtn:hover {
+    color: #000;
+  }
+
+.pbody {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+/*----------------------Modal Classes------------------------*/
+
+.modal-body {
+  padding: 0px;
+}
+
+  .modal-body.maxHeight300 {
+    max-height: 300px;
+    overflow-x: auto;
+  }
+
+  .modal-body.maxHeight700 {
+    max-height: 700px;
+    overflow-x: auto;
+  }
+
+.modal-dialog {
+  width: 1000px;
+}
+
+
+.modal-body .row:first-child {
+  border-top: none;
+}
+
+.modal-body .row .row {
+  margin-left: -15px;
+  margin-right: -15px;
+  border: none;
+  padding: 0;
+}
+
+.modal-content {
+  padding: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
+}
+
+.modal-header {
+  padding: 6px;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+
+  .modal-header .searchMdl {
+    float: right;
+    background-position: left -1130px;
+  }
+
+    .modal-header .searchMdl:hover {
+      float: right;
+      background-position: left -1182px;
+    }
+
+
+  .modal-header h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 36px;
+  }
+
+    .modal-header h4 > span {
+      display: block;
+      font-size: 66.667%;
+      letter-spacing: normal;
+      font-weight: 400;
+      margin-top: 5px;
+      margin-bottom: -2px;
+    }
+
+
+
+.modal-footer {
+  padding: 15px;
+  border-top: 1px solid #e5e5e5;
+  overflow: hidden;
+  margin: 0px auto;
+}
+
+  .modal-footer .form-group {
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+
+.tblRow {
+  border-bottom: 1px solid #e5e5e5;
+  padding-left: 0;
+  list-style: none;
+  background-color: #fafafa;
+}
+
+  .tblRow li .tblCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    padding: 10px;
+  }
+
+.cancelSearch {
+  border-left: 1px solid #e5e5e5;
+  color: #888888;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 90%;
+  padding-right: 5px;
+  text-transform: uppercase;
+}
+
+
+.modal-body > ul > li {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 8px 10px;
+}
+
+ul > li > div > a {
+  overflow: hidden;
+  text-decoration: none;
+  color: #888888;
+  font-size: large;
+  margin-left: 40px;
+}
+
+.mBtn {
+  padding: 8px 12px;
+  background-color: #0096bb;
+  color: #fff !important;
+  font-weight: 400;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid #0096bb;
+  margin-right: 10px;
+  text-decoration: none !important;
+  min-width: 90px;
+  text-align: center;
+  font-size: 87.5%;
+}
+
+  .mBtn:hover, .mBtn:focus {
+    color: white;
+    background-color: #008caf;
+    border-color: #008caf;
+  }
+
+  .mBtn:last-child {
+    margin-right: 0;
+  }
+
+.sub-info {
+  font-size: 10px !important;
+}
+
+
+/* ------------------- Checkbox and Radio Css-------------------------*/
+.customcheckradio {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  vertical-align: super;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+  /* Hide the browser's default radio button */
+  .customcheckradio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #e8e8e8;
+  border: 1px solid #211f1f3b;
+}
+
+/* Create a custom radio button */
+.radiomark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 27px;
+  width: 27px;
+  background: #e8e8e8;
+  border: 1px solid #211f1f3b;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.customcheckradio:hover input ~ .checkmark, .customcheckradio:hover input ~ .radiomark {
+  background-color: #ccc;
+}
+
+
+/* When the radio button is checked, add a blue background */
+.customcheckradio input:checked ~ .checkmark, .customcheckradio input:checked ~ .radiomark {
+  background-color: #2196F3;
+}
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after, .radiomark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+/* Show the indicator (dot/circle) when checked */
+.customcheckradio input:checked ~ .checkmark:after, .customcheckradio input:checked ~ .radiomark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+
+.customcheckradio .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.customcheckradio .radiomark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  border-radius: 50%;
+}
+
+/*----------------------Scrollbar---------------------------*/
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /*border-radius: 10px;*/
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  /*border-radius: 10px;*/
+}
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+alert-margin {
+  display: none;
+  margin-top: 55px;
+}
+
+.alert {
+  padding: 20px;
+  margin-bottom: 8px;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.panel-heading {
+  height: 50px;
+  margin-top: 2px;
+  border: 1px solid #e5eaf3;
+  margin-bottom: 10px;
+}
+
+  .panel-heading > h3 {
+    margin: 0px auto;
+  }
+
+  .panel-heading > a {
+    margin-top: -30px;
+  }
+
+
+/***********Member Popup UI ********************/
+.media-left {
+  float: left;
+  margin: 7px -4px 0px 0px;
+}
+
+.media-body > h4 > span {
+  font-size: 68.5%;
+  font-weight: 600;
+}
+
+.modal-body > ul > li:hover {
+  background: #e8e8e8;
+}
+
+
+/***************validation ****************/
+.control-label.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 2px;
+  top: 0px;
+  text-transform: uppercase;
+}
+
+
+
+/***********Collapsebale panel*************/
+.card-header {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.mb-0, .my-0 {
+  margin-bottom: 0 !important;
+}
+
+.card-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.btn-default {
+  border-color: #cccccc61 !important;
+}
+
+  .btn-default:hover {
+    border-color: #777777c2 !important;
+  }
+
+
+[type="date"] {
+  background: #fff url(/assets/calendar_2.png) 97% 50% no-repeat;
+}
+
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
+.text-bold {
+  font-weight: bold;
+}
+
+.centermiddle {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.middle {
+  vertical-align: middle !important;
+}
+
+.searchRowPadding {
+  padding: 5px 0px 5px 0px;
+}
+
+span.fa  {
+  font-size: 14px
+}
+
+i.fa {
+  font-size: 20px
+}
+/*back button*/
+#btnback {
+  position: absolute;
+  font-size: 27px;
+}
+
+  #btnback:hover {
+    cursor: pointer;
+    color: #428bca;
+    font-size: 35px;
+    margin-top: -4px;
+  }
+
+a:hover {
+  color: orange;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor:pointer;
+}
+
+h4 > i:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+.notificationSetting {
+  padding: 15px;
+  border: 1px solid #e7e9eb;
+}
+
+.notificationHeading {
+  margin-top: -15px;
+  margin-bottom: 8px;
+  padding: 10px;
+  background: #1529391a;
+}
+
+.loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999;
+  overflow: hidden;
+  background: #a29e9e52;
+}
+
+  .loading > div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -4em;
+    display: block;
+    font-size: 30px;
+  }
+
+.wc-date-container {
+  float: left;
+  width: 100%;
+  height: 30px;
+  border: 0px !important;
+  margin-top: -5px;
+  margin-bottom: 1px;
+  font-size: 16px;
+  padding: 6px;
+  text-align: left;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+  .wc-date-container > span {
+    color: #555 !important;
+  }
+
+.wc-date-popover {
+  top: 26px !important;
+}
+
+/*Menu*/
+.navbar-inverse {
+  background-color: #152939;
+  border-color: #152939;
+}
+
+.menuUserName {
+  pointer-events: none;
+  color: white;
+}
+
+.list-unstyled {
+  border-bottom: 2px solid #152939;
+}
+
+  .list-unstyled > li {
+    border-bottom: .1rem ridge #dadbdc;
+  }
+
+.topHeaderMenuFloatRight {
+  float: right;
+  display: -webkit-inline-box;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+  .dropdown:hover > a > span {
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 142px;
+  margin-top: 1px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 5px;
+    text-decoration: none;
+    display: block;
+  }
+
+    .dropdown-content a:hover {
+      background-color: #ddd
+    }
+
+
+
+.navbar-nav > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-collapse.collapse {
+  margin-top: 2px;
+}
+
+.menuContainer {
+  margin: 0px 0px 0px 10px;
+}
+
+.logoMargin {
+  margin: 5px 0px 0px 0px;
+}
+
+.menuMargin {
+  float: left;
+  margin-top: -10px !important;
+}
+
+
+
+@media only screen and ( max-width: 767px ) {
+  .labelTxtInline label {
+    width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    float: left;
+  }
+
+  .labelTxtInline span, .labelTxtInline label {
+    display: table-cell;
+  }
+
+
+  .list {
+    border-left: none;
+    border-right: none;
+  }
+
+  .panel-heading > h3 {
+    margin: 0 0 auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 50%;
+  }
+
+  .panel-heading {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .navbar-collapse.in {
+    overflow-y: inherit !important;
+  }
+
+  .navbar-nav {
+    margin: 0px;
+  }
+
+  .menuMargin {
+    padding:5px;
+  }
+}

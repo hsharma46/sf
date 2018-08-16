@@ -1,0 +1,74 @@
+<ul class="list">
+  <li>
+    <div>
+      <div class="labelTxtInLine medium">
+        <div class="border-shadow">
+          <div class="col-sm-12 grid_padding">
+            <form *ngIf="form" [formGroup]="form">
+              <div class="container-fluid">                
+                <div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="row">
+
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="date" class="control-label required">Date :</label>
+                            <!--<input type="date" #selectedDate class="form-control" formControlName="sDate" required />-->
+                            <angular2-date-picker class="form-control" [(ngModel)]="date" [settings]="dateSettings" formControlName="sDate"></angular2-date-picker>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="parameter" class="control-label required">Parameter :</label>
+                            <select #parameter (change)="onParameterChange(parameter.value)" class="form-control">
+                              <option *ngFor="let obj of parameterList; let i = index" value="{{i}}">
+                                {{obj.DisplayName}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="control-label">&nbsp;</label>
+                            <div>
+                              <button class="btn btn-primary" *ngIf="parameterList.length>0" (click)="onSubmit()">{{submitButtonText}}  <span [style.display]="Loading?'inline-block':'none'" class="{{spinnerClass}}"></span></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="date" class="control-label">Device Code :</label>
+                            <br />
+                            {{this.report.DeviceCode}}
+                          </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="date" class="control-label">Description :</label>
+                            <br />
+                            {{deviceInfo.Description}}
+                          </div>
+                        </div>                         
+                      </div>
+                    </div>
+                    <div class="col-sm-9">
+                      <app-chart-js #chart [Type]="type" [selectedParameter]="sParameter" [SliderDirection]="sliderDirection" (notifySliderChange)="sliderChange($event)"></app-chart-js>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </form>
+          </div>
+          <div class="loading" [style.display]="Loading?'inline-block':'none'">
+            <div><i class="fa fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,32 @@
+<div class="border-shadow">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Module Name</th>
+                    <th>Menu Name</th>
+                    <th *ngFor="let keys of Roles" style="text-align:center;">
+                        {{keys.DisplayName}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td [hidden]="!Loading" style="text-align:center;">
+                        <i class="{{spinnerClass}}"></i>
+                    </td>
+                </tr>
+                <tr [hidden]="Loading" *ngFor="let obj of Modules;">
+                    <td>{{obj.ModuleName}}</td>
+                    <td>{{obj.MenuName}}</td>
+                    <td *ngFor="let role of obj.RolePermission" style="text-align:center;">
+                        <label class="customcheckradio">
+                            <input type="checkbox" [checked]="role.Permission" (change)="onCheckBoxChange(role.Id,role.ModuleMenuId,$event)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

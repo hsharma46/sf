@@ -1,0 +1,35 @@
+﻿<div class="border-shadow" *ngIf="!!companyName">
+    <div class="row">
+        <div class="col-sm-12 details">
+            <i class="{{companyIcon}}" aria-hidden="true">
+                <span>
+                    <b>{{companyName}}</b>
+                    <span class="sub-info">{{countryName}}</span>
+                </span>
+            </i>
+        </div>
+    </div>
+</div>
+    <div class="border-shadow" *ngIf="!!plantName || !!lineName">
+        <div class="row">
+            <div class="col-sm-12 details" *ngIf="!!plantName">
+                <i (click)="GotoPlantList()" class="{{plantIcon}} pointer" aria-hidden="true">
+                    <span>
+                        <b class="highlight">{{plantName}}</b>
+                    </span>
+                </i>
+                <!--<span class="sub-info">
+                    <i class="{{locationIcon}}" style="font-size: inherit;" aria-hidden="true">
+                        <span style="font-size: inherit;">{{location}}</span>
+                    </i>
+                </span>-->
+            </div>
+            <div class="col-sm-12 details" *ngIf="!!lineName">
+                <i (click)="GotoPlantOverview()" class="{{lineIcon}} pointer" aria-hidden="true">
+                    <span>
+                        <b class="highlight">{{lineName}}</b>
+                    </span>
+                </i>
+            </div>
+        </div>
+    </div>

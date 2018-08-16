@@ -1,0 +1,126 @@
+﻿<div class="row" *ngIf="ParameterList.length==0">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label class="control-label">Sample Template for Parameter (Json Object Only.)</label>
+            <div class="input-group">
+                <input type="text" class="form-control" #jsonData placeholder="Enter Sample Data" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info" (click)="submit(jsonData.value)">Extract</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="parameterObject.length>0">
+    <div class="col-sm-12">
+        <div id="accordion" style="margin-bottom: 12px;">
+            <div class="card">
+                <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" (click)="toggelCollapsed()" aria-expanded="true" aria-controls="collapseOne">
+                    <h4>
+                        <i class="glyphicon glyphicon-chevron-down pull-right" [ngClass]="isCollapsed? ' ':'rotate'"></i>
+                        Parameters List
+                    </h4>
+                </div>
+
+                <div id="collapseOne" class="in" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="middle" *ngFor="let keys of parameterKeys">{{keys}}</th>
+                                        <th class="middle">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td [ngClass]="isNameBlank ? 'has-error' : ''">
+                                            <input type="text" class="form-control" [(ngModel)]="parameter.Name"/>
+                                            <app-validation-message [displayError]="isNameBlank"
+                                                                    errorMsg="Please Enter Name">
+                                            </app-validation-message>
+                                        </td>
+                                        <td [ngClass]="isDisplayNameBlank ? 'has-error' : ''">
+                                            <input type="text" class="form-control" [(ngModel)]="parameter.DisplayName"/>
+                                            <app-validation-message [displayError]="isDisplayNameBlank"
+                                                                    errorMsg="Please Enter Display Name">
+                                            </app-validation-message>
+                                        </td>
+                                        <td><input type="number" class="form-control" [(ngModel)]="parameter.MinThresHoldValue" value="0" /></td>
+                                        <td><input type="number" class="form-control" [(ngModel)]="parameter.MaxThresHoldValue" value="0" /></td>
+                                        <td><input type="number" class="form-control" [(ngModel)]="parameter.StandardValue" value="0" /></td>
+                                        <td class="center">
+                                            <label class="customcheckradio">
+                                                <input type="checkbox" [(ngModel)]="parameter.IsNotificationEnable">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td class="center">
+                                            <label class="customcheckradio">
+                                                <input type="checkbox" [(ngModel)]="parameter.DisplayOnSelection">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <!--<input type="checkbox" class="form-control" [checked]="object.DisplayOnSelection" #displayOnSelection (change)="changeParameter('DisplayOnSelection',displayOnSelection.checked,i)" />-->
+                                        </td>
+                                        <td class="center">
+                                            <label class="customcheckradio">
+                                                <input type="checkbox" [(ngModel)]="parameter.IsDerivedParameter">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <!--<input type="checkbox" class="form-control" [checked]="object.IsDerivedParameter" #isDerivedParameter (change)="changeParameter('IsDerivedParameter',isDerivedParameter.checked,i)" />-->
+                                        </td>
+
+                                        <td class="center">
+                                            <a class="btn pull-right" (click)='addParameter()'><span class="glyphicon glyphicon-plus"></span></a>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let object of parameterObject;let i = index">
+                                        <td class="middle"><label>{{object.Name}}</label></td>
+                                        <td class="middle"><input type="text" class="form-control" value="{{object.DisplayName}}" #displayName (change)="changeParameter('DisplayName',displayName.value,i)" /></td>
+                                        <td class="middle"><input type="number" class="form-control" value="{{object.MinThresHoldValue}}" #minValue (change)="changeParameter('MinThresHoldValue',minValue.value,i)" /></td>
+                                        <td class="middle"><input type="number" class="form-control" value="{{object.MaxThresHoldValue}}" #maxValue (change)="changeParameter('MaxThresHoldValue',maxValue.value,i)" /></td>
+                                        <td class="middle"><input type="number" class="form-control" value="{{object.StandardValue}}" #standardValue (change)="changeParameter('StandardValue',standardValue.value,i)" /></td>
+                                        <td class="centermiddle">
+                                            <label class="customcheckradio">
+                                                <input type="checkbox"
+                                                       [checked]="object.IsNotificationEnable"
+                                                       #isNotificationEnable
+                                                       (change)="changeParameter('IsNotificationEnable',isNotificationEnable.checked,i)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td class="centermiddle">
+                                            <label class="customcheckradio">
+                                                <input type="checkbox"
+                                                       [checked]="object.DisplayOnSelection"
+                                                       #displayOnSelection
+                                                       (change)="changeParameter('DisplayOnSelection',displayOnSelection.checked,i)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <!--<input type="checkbox" class="form-control" [checked]="object.DisplayOnSelection" #displayOnSelection (change)="changeParameter('DisplayOnSelection',displayOnSelection.checked,i)" />-->
+                                        </td>
+                                        <td class="centermiddle">
+                                            <label class="customcheckradio">
+                                                <input type="checkbox"
+                                                       [checked]="object.IsDerivedParameter"
+                                                       #isDerivedParameter
+                                                       (change)="changeParameter('IsDerivedParameter',isDerivedParameter.checked,i)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <!--<input type="checkbox" class="form-control" [checked]="object.IsDerivedParameter" #isDerivedParameter (change)="changeParameter('IsDerivedParameter',isDerivedParameter.checked,i)" />-->
+                                        </td>
+
+                                        <td class="centermiddle">
+                                            <span class="glyphicon glyphicon-remove" style="font-size:18px;" (click)='removeParameter(object)'></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

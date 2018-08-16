@@ -1,0 +1,56 @@
+<ul class="list">
+  <li>
+    <div>
+      <div class="labelTxtInLine medium">
+        <div class="border-shadow">
+          <div class="col-sm-12 grid_padding">
+            <form *ngIf="form" [formGroup]="form">
+              <div class="container-fluid">
+                <div class="panel-heading">
+                  <!--<i (click)="back()" id="btnback" class="fa fa-arrow-left" aria-hidden="true" title="Back"></i>-->
+                  <!--<h3 style="margin-left:40px;">-->
+                  <h3>
+                    {{this.report.DeviceCode}} : {{deviceInfo.Description}}
+                  </h3>
+                </div>
+                <div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="date" class="control-label required">Date :</label>
+                        <!--<input type="date" #selectedDate class="form-control" formControlName="sDate" required />-->
+                        <angular2-date-picker class="form-control" [(ngModel)]="date" [settings]="dateSettings" formControlName="sDate"></angular2-date-picker>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <div>
+                          <button class="btn btn-primary" *ngIf="report.ParameterModel.length>0" (click)="onSubmit()">{{submitButtonText}}  <span [style.display]="Loading?'inline-block':'none'" class="{{spinnerClass}}"></span></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <app-chart-js #chartLeftSide
+                              [Type]="typeLeft"
+                              [selectedParameter]="sParameterLeft"
+                              (notifySliderChange)="sliderChangeLeft($event)">
+                </app-chart-js>
+
+                <app-chart-js #chartRightSide
+                              [Type]="typeRight"
+                              [selectedParameter]="sParameterRight"
+                              (notifySliderChange)="sliderChangeRight($event)">
+                </app-chart-js>
+              </div>
+            </form>
+          </div>
+          <div class="loading" [style.display]="Loading?'inline-block':'none'">
+            <div><i class="fa fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,53 @@
+
+<div class="row" *ngIf="SliderVisible && isSliderOnTop()" style="padding-bottom:30px">
+  <div class="col-md-9">
+    <dx-slider [min]="0"
+               [max]="22"
+               [value]="sliderValue"
+               [step]="sliderStep"
+               [rtlEnabled]="false"
+               [showRange]="false"
+               (onInitialized)="onSliderInitialized($event)">
+      <dxo-tooltip [enabled]="true"
+                   [format]="format"
+                   showMode="always"
+                   position="bottom">
+
+      </dxo-tooltip>
+    </dx-slider>
+  </div>
+</div>
+
+<div class="row" style="font-size: 37px;" *ngIf="ParameterVisible">
+  <div class="col-md-9">
+    <h4>
+      <strong style="color:#ffc107;">{{this.parameterValue}}</strong>&nbsp;
+      <a (click)="slidePrevious()" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+      <a (click)="slideNext()" class="btn btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <canvas #myChart id="canvas">{{defaultChart}}</canvas>
+  </div>
+</div>
+
+<div class="row" *ngIf="SliderVisible && isSliderOnBottom()"  style="padding-bottom:30px">
+  <div class="col-md-9">
+    <dx-slider [min]="0"
+               [max]="22"
+               [value]="sliderValue"
+               [step]="sliderStep"
+               [rtlEnabled]="false"
+               [showRange]="false"
+               (onInitialized)="onSliderInitialized($event)">
+      <dxo-tooltip [enabled]="true"
+                   [format]="format"
+                   showMode="always"
+                   position="bottom">
+
+      </dxo-tooltip>
+    </dx-slider>
+  </div>
+</div>

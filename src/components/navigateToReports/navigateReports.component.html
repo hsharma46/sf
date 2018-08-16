@@ -1,0 +1,27 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid menuContainer">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="../../assets/logo.png" />
+    </div>
+    <div class="navbar-collapse collapse" id="navigationReportMenu">
+      <ul class="nav navbar-nav navbar-right topHeaderMenuFloatRight">
+        <li><a class="menuUserName"><strong>{{userInfoService.getFullName()}}</strong></a></li>
+        <li><a (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+      </ul>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav menuMargin">
+        <li *ngFor="let itemReport of device.ReportGroupModel" class="dropdown" (click)="OpenReport(itemReport.ReportURL)">
+          <a><span>{{itemReport.ReportName}}</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

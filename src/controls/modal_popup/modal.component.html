@@ -1,0 +1,77 @@
+<!-- Modal -->
+<div class="modal" id="addMember" role="dialog" [style.display]="isModalVisible?'block':'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
+        <h4>{{Title}}</h4>
+      </div>
+      <!--<ul class="tblRow">
+        <li>
+          <div class="tblCell"><input type="text" class="form-control" id="searchText" #search (keyup)="searchMember(search.value)" placeholder="Search"></div>
+
+          <div class="tblCell">
+            <button class="btn btn-default" (click)="search.value=''">Clear</button>
+          </div>
+        </li>
+      </ul>-->
+      <div class="modal-body maxHeight700 table-responsive">
+        <table #excelData class="table table-bordered">
+          <thead>
+            <tr>
+              <th colspan="8">
+                <button class="pull-right" *ngIf="Data.length>0" (click)="exportExcel()">{{excelButttonText}} <span class="{{excelIcon}}"></span></button>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="8">Daily Production Report</th>
+            </tr>
+            <tr>
+              <th colspan="2">Device Code</th>
+              <th colspan="6">{{ DeviceCode}}</th>
+            </tr>
+            <tr>
+              <th colspan="2">Start Date/Time</th>
+              <th colspan="2">{{StartDate}}</th>
+              <th colspan="2">End Date/Time</th>
+              <th colspan="2">{{EndDate}}</th>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <th>Date</th>
+              <th width="170">Time</th>
+              <th>Cumulative Part Count</th>
+              <th>Good Job</th>
+              <th>Bad Job</th>
+              <th>Left Side Temperature</th>
+              <th>Right Side Temperature</th>
+              <th>Pitch Time</th>
+            </tr>
+          </thead>
+          <tbody>            
+            <tr *ngFor="let item of Data; let i = index">
+              <td>{{item.Date}}</td>
+              <td>{{item.Time}}</td>
+              <td class="text-right">{{item.CumulativePartCount}}</td>
+              <td class="text-right">{{item.GoodJob}}</td>
+              <td class="text-right">{{item.BadJob}}</td>
+              <td>{{item.LeftSideJobTemperature}}</td>
+              <td>{{item.RightSideJobTemperature}}</td>
+              <td>{{item.CycleTime}}</td>
+            </tr>
+            <tr [style.display]="noRecordFound ? 'table-row' : 'none'">
+              <td colspan="8" style="text-align:center;">
+                {{noRecordFoundText}}
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <a class="mBtn" id="closeModal" data-dismiss="modal" (click)="closeModal()">Close</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<header *ngIf="menu.isVisible()">
+  <nav-menu></nav-menu>
+</header>
+<div class="container-fluid">
+  <section>
+    <div *ngIf="!menu.isVisible()">
+      <div class="alert alert-success alert-dismissible fade in" [style.display]="alert.isSuccessShowHide()?'block':'none'">
+        <span class="close" data-target="alertsuccess" (click)="alert.hideSuccess()">&times;</span>
+        {{alert.successText()}}
+      </div>
+      <div id="alertdanger" class="alert alert-danger alert-dismissible fade in" [style.display]="alert.isErrorShowHide()?'block':'none'">
+        <span class="close" data-target="alertdanger" (click)="alert.hideError()">&times;</span>
+        {{alert.errorText()}}
+      </div>
+      <app-login></app-login>
+    </div>
+
+    <div *ngIf="menu.isVisible()" class="cntWrap">
+      <div id="dpHeaderPlaceholder" style="height: 88px;"></div>
+      <div class="alert alert-success alert-dismissible fade in" [style.display]="alert.isSuccessShowHide()?'block':'none'">
+        <span class="close" data-target="alertsuccess" (click)="alert.hideSuccess()">&times;</span>
+        {{alert.successText()}}
+      </div>
+      <div id="alertdanger" class="alert alert-danger alert-dismissible fade in" [style.display]="alert.isErrorShowHide()?'block':'none'">
+        <span class="close" data-target="alertdanger" (click)="alert.hideError()">&times;</span>
+        {{alert.errorText()}}
+      </div>
+      <router-outlet></router-outlet>
+      <hr />
+      <!--<footer class="main-footer">
+          <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+      </footer>-->
+    </div>
+  </section>
+</div>

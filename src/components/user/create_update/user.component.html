@@ -1,0 +1,110 @@
+<ul class="list">
+    <li>
+        <div>
+            <div class="labelTxtInLine medium">
+                <div class="border-shadow">
+                    <div class="col-sm-12 grid_padding">
+                        <form *ngIf="form" [formGroup]="form">
+                            <div class="container-fluid">
+                                <div class="panel-heading">
+                                    <h3>
+                                        <i class="{{pageIcon}}" aria-hidden="true"></i>
+                                        {{headerText}}
+                                    </h3>
+                                </div>
+                                <div>
+                                  <div class="row form-group" [style.display]="isSearchVisible?'block':'none'">
+                                    <div class="col-sm-2"><label class="control-label">Search</label></div>
+                                    <div class="col-sm-4" [ngClass]="{'has-error has-feedback':searchIsBlank===true}">
+                                      <input type="text" class="form-control" #searchUser placeholder="Enter UserName" formControlName="searchBox" />
+                                      <app-validation-message [displayError]="searchIsBlank"
+                                                              errorMsg="Please Enter Username for search">
+                                      </app-validation-message>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <select #searchDomain class="form-control">
+                                        <option *ngFor="let obj of domains index as isIndex" value="{{obj.Id}}" selected="{{isIndex==selectedDomain}}">
+                                          {{obj.Name}}
+                                        </option>
+                                      </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <button type="button" class="btn btn-info" (click)="getSearchResult(searchUser.value,searchDomain.value)">
+                                        <span class="glyphicon glyphicon-search"></span> Search
+                                      </button>
+                                    </div>
+
+                                  </div>
+                                  <div class="row form-group">
+                                    <div class="col-sm-2"><label class="control-label">First Name</label></div>
+                                    <div class="col-sm-4">
+                                      <label for="FirstName" class="control-label fontDisabled">{{user.FirstName}}</label>
+                                    </div>
+                                  </div>
+                                  <div class="row form-group">
+                                    <div class="col-sm-2"><label class="control-label">Last Name</label></div>
+                                    <div class="col-sm-4">
+                                      <label for="LastName" class="control-label fontDisabled">{{user.LastName}}</label>
+                                    </div>
+                                  </div>
+                                  <div class="row form-group">
+                                    <div class="col-sm-2"><label class="control-label">Full Name</label></div>
+                                    <div class="col-sm-4">
+                                      <label for="FullName" class="control-label fontDisabled">{{user.FullName}}</label>
+                                    </div>
+
+                                  </div>
+                                  <div class="row form-group">
+                                    <div class="col-sm-2"><label class="control-label required">Email</label></div>
+                                    <div class="col-sm-6" [ngClass]="validation.displayFieldCss('email',form,false)">
+                                      <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="user.Email" [readonly]="!isSearchVisible" placeholder="Email" formControlName="email" />
+                                        <app-validation-message [displayError]="validation.isFieldValid('email',form,false)"
+                                                                errorMsg="Please Enter Email">
+                                        </app-validation-message>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row form-group">
+                                    <div class="col-sm-2"><label class="control-label required">Role</label></div>
+                                    <div class="col-sm-4" [ngClass]="validation.displayFieldCss('role',form,false)">
+                                      <select multiple [(ngModel)]="roleId" class="form-control" formControlName="role" (change)="roleChangedEvent()">
+                                        <option *ngFor="let obj of roleList" value="{{obj.Id}}">
+                                          {{obj.DisplayName}}
+                                        </option>
+                                      </select>
+                                      <app-validation-message [displayError]="validation.isFieldValid('role',form,false)"
+                                                              errorMsg="Please Select Role">
+                                      </app-validation-message>
+                                    </div>
+                                  </div>
+                                  <div class="row form-group">
+                                    <div class="col-sm-2"><label class="control-label required">Active</label></div>
+                                    <div class="col-sm-4">
+                                      <label class="radio-inline customcheckradio">
+                                        <input type="radio" [(ngModel)]="user.IsActive" [value]="true" [checked]="user.IsActive" formControlName="active">True
+                                        <span class="radiomark"></span>
+                                      </label>
+                                      <label class="radio-inline customcheckradio">
+                                        <input type="radio" [(ngModel)]="user.IsActive" [value]="false" [checked]="!user.IsActive" formControlName="active">False
+                                        <span class="radiomark"></span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="btn btn-group pull-right">
+                                        <button class="btn btn-primary" (click)="onSubmit(searchDomain.value)">{{buttonText}}</button>
+                                        <button class="btn" (click)="reset()">Reset</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

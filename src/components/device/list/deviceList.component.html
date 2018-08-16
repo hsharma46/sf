@@ -1,0 +1,29 @@
+<div class="border-shadow">
+    <div class="col-sm-12 grid_padding">
+        <div class="panel-heading">
+            <h3>
+                <i class="{{pageIcon}}" aria-hidden="true"></i>
+                Devices
+            </h3>
+            <a class="btn btn-default pull-right" routerLink="/device" *ngIf="writeAccess">Add <span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+        <div>
+            <app-grid [DisplayColumns]="displayColumns"
+                      [GridData]="gridData"
+                      [CloneAccess]="cloneAccess"
+                      [HyperLinkColumn]="hyperLinkColumn"
+                      [Loading]="isLoading"
+                      [PagingModel]="pagingModel"
+                      [SearchVisible]="searchVisible"
+                      [ReadAccess]="readAccess"
+                      [ValueColumns]="valueColumns"
+                      [UpdateAccess]="updateAccess"
+                      (notifyView)="viewDevice($event)"
+                      (notifyUpdate)="editDevice($event)"
+                      (notifyPaging)="getDeviceByPaging($event)"
+                      (notifyClone)="cloneDevice($event)">
+            </app-grid>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,8 @@
+{
+  "ServerIP": "http://10.167.96.48:1339",
+  "PagingSize": 10,
+  "SliderStep": 2,
+  "SliderDefaultValue": 8,
+  "DateFormat": "dd-mm-yyyy HH:MM:SS",
+  "SelectedDomain": "0"
+}

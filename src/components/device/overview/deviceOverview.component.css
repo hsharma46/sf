@@ -1,0 +1,37 @@
+﻿
+.seprator {
+    border-width: 1px 0px 1px 0px;
+    border-color: #00000021;
+    border-style: ridge;
+    margin-top: 10px;
+}
+
+
+.reportHeading {
+    margin-left: 1px;
+    padding: 10px;
+    background: #1529391a;
+}
+
+.report {
+    background: #f1f3f7;
+    border-left:1px solid black;
+}
+
+div.report {
+    padding: 10px;
+    border-bottom: 1px ridge #f1f3f7;
+}
+
+    div.report:hover {
+        background: #c9ccd0;
+        color: White !important;
+        font-weight: bold;
+    }
+
+.row-seprator {
+    padding: 10px;
+    border-bottom: 1px solid #f1f3f7;
+}
+
+

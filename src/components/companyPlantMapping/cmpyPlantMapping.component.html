@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-6" *ngIf="IsCompanyVisible" [ngClass]="companyError ? 'has-error has-feedback' : ''">
+        <div class="form-group">
+            <label for="Active" class="control-label required">Company</label>
+            <select [(ngModel)]="companyId" (change)="onCompanyChange()" class="form-control" [disabled]="IsCompanyDisabled">
+                <option *ngFor="let obj of companyList" value="{{obj.Id}}">
+                    {{obj.Name}}
+                </option>
+            </select>
+            <app-validation-message [displayError]="companyError"
+                                    errorMsg="Please Select Company">
+            </app-validation-message>
+        </div>
+    </div>
+    <div class="col-md-6" *ngIf="IsPlantVisible" [ngClass]="plantError ? 'has-error has-feedback' : ''">
+        <div class="form-group">
+            <label for="Active" class="control-label required">Plant</label>
+            <select [(ngModel)]="plantId" (change)="onPlantChange()" class="form-control" [disabled]="IsPlantDisabled">
+                <option *ngFor="let obj of plantList" value="{{obj.Id}}">
+                    {{obj.Name}}
+                </option>
+            </select>
+            <app-validation-message [displayError]="plantError"
+                                    errorMsg="Please Select Plant">
+            </app-validation-message>
+        </div>
+    </div>
+
+
+    <!--<div class="col-md-2">
+        <button (click)="hide()" class="btn btn-info" value="Set"></button>
+        <a (click)="show()">change</a>
+    </div>-->
+</div>
+
+

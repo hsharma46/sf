@@ -1,0 +1,76 @@
+<div class="row searchRowPadding">
+  <div class="col-sm-3">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="search" #search (keyup.enter)="searchData()" value="" />      
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-info" (click)="searchData()">{{searchButtonText}} <span class="{{searchIcon}}"></span></button>
+        </span>      
+    </div>
+  </div>
+</div>
+<ul class="list">
+  <li>
+    <div class="row labelTxtInLine medium">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>S.No.</th>
+                <th *ngFor="let keys of DisplayColumns">
+                  {{keys}}
+                </th>
+                <th class="text-center" *ngIf="UpdateAccess || CloneAccess"><span>Action</span></th>
+              </tr>
+              <tr>
+                <td [hidden]="!Loading" [attr.colspan]="colspan" class="text-center">
+                  <i class="{{spinnerClass}}"></i>
+                </td>
+              </tr>
+              <tr [hidden]="Loading" *ngFor="let obj of GridArray; let i = index">
+                <td>{{startingIndexOfCurrentPage+ i}}</td>
+                <td *ngFor="let keys of filteredColumnName(obj)">
+                  <span *ngIf="HyperLinkColumn===keys;then thenblock else elseblock">
+                  </span>
+                  <ng-template #thenblock><a (click)="view(obj.object)">{{obj[keys]}}</a></ng-template>
+                  <ng-template #elseblock>
+                    <ng-container *ngIf="keys != 'IsActive';else elseIfblock">{{obj[keys]}}</ng-container>
+                    
+                  </ng-template>
+                  <ng-template #elseIfblock><i class="{{obj[keys] === 'true' ? enableIcon : disableIcon}}"></i></ng-template>
+                </td>
+
+                <td class="text-center" *ngIf="UpdateAccess || CloneAccess">                  
+                    <button *ngIf="UpdateAccess" class="btn btn-info" (click)='edit(obj.object)'>{{editButtonText}} <span class="{{editIcon}}"></span></button>
+                  &nbsp;
+                    <button *ngIf="CloneAccess" class="btn btn-info" (click)='clone(obj.object)'>{{cloneButtonText}} <span class="{{cloneIcon}}"></span></button>                  
+                </td>
+
+              </tr>
+              <tr [hidden]="pagingModel.HidePaging">
+                <td [hidden]="Loading" [attr.colspan]="nonPageIndexColSpan" style="text-align:left;vertical-align: inherit;">
+                  Showing <span class="badge">{{startingIndexOfCurrentPage}}</span> to <span class="badge">{{startingIndexOfCurrentPage + GridData.length-1}}</span> of <span class="badge">{{pagingModel.TotalNoOfRecords}}</span> entries
+                </td>
+                <td [hidden]="Loading" [attr.colspan]="pageIndexColSpan" style="text-align:center;vertical-align: inherit;">
+                  Pages : <span class="badge">{{pagingModel.PageIndex}}/{{pagingModel.TotalNoOfPages}}</span>
+                </td>
+                <td [hidden]="Loading" [attr.colspan]="nonPageIndexColSpan" style="text-align:right;vertical-align: inherit;">
+                  <div class="btn btn-group">
+                    <button [style.display]="pagingModel.ShowPrev?'block':'none'" class="btn btn-default" (click)="pagingPrev()"><i class="glyphicon glyphicon-chevron-left"></i> Prev</button>
+
+                    <button [style.display]="pagingModel.ShowNext?'block':'none'" class="btn btn-default" (click)="pagingNext()">Next <i class="glyphicon glyphicon-chevron-right"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr [style.display]="!Loading ?  noRecordFound ? 'table-row' : 'none' :'none'">
+                <td [attr.colspan]="colspan" style="text-align:center;">
+                  {{noRecordFoundText}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

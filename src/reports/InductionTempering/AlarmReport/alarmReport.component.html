@@ -1,0 +1,84 @@
+<ul class="list">
+  <li>
+    <div>
+      <div class="labelTxtInLine medium">
+        <div class="border-shadow">
+          <div class="col-sm-12 grid_padding">
+            <form *ngIf="form" [formGroup]="form">
+              <div class="container-fluid">
+                <div class="panel-heading">
+                  <h3>
+                    {{this.report.DeviceCode}} : {{deviceInfo.Description}}
+                  </h3>
+                </div>
+                <div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="date" class="control-label required">Date :</label>
+                        <angular2-date-picker class="form-control" [(ngModel)]="date" [settings]="dateSettings" formControlName="sDate"></angular2-date-picker>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <div>
+                          <!--<button class="btn btn-primary" (click)="onSubmit()">{{submitButtonText}}  <i [style.display]="Loading?'inline-block':'none'" class="{{spinnerClass}}"></i></button>-->
+                          &nbsp;
+                          <!--<button class="btn btn-primary" *ngIf="machineData.length>0" (click)="exportExcel()">{{excelButttonText}}   <i [style.display]="Loading?'inline-block':'none'" class="{{spinnerClass}}"></i></button>-->
+                          <button class="btn btn-primary"  (click)="exportExcel()">{{excelButttonText}}   <span [style.display]="Loading?'inline-block':'none'" class="{{spinnerClass}}"></span></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table #excelData class="table table-bordered" style="display:none;">
+                    <thead>
+                      <tr>
+                        <th colspan="5">Alarm Report</th>
+                      </tr>
+                      <tr>
+                        <th colspan="2">Device Code</th>
+                        <th colspan="3">{{report.DeviceCode}}</th>
+                      </tr>
+                      <tr>
+                        <th colspan="2">Start Date/Time</th>
+                        <th colspan="3">{{report.StartDate}}</th>                        
+                      </tr>
+                      <tr></tr>
+                      <tr></tr>
+                      <tr>
+                        <th>S.No.</th>
+                        <th>Device Code</th>
+                        <th>Cumulative Jobs</th>
+                        <th>Fault Description</th>
+                        <th>Date Created</th>
+                      </tr>                      
+                    </thead>
+                    <tbody>
+                      <tr [hidden]="!Loading">
+                        <td colspan="5" style="text-align:center;">
+                          <i class="{{spinnerClass}}"></i>
+                        </td>
+                      </tr>
+                      <tr *ngFor="let item of machineData; let i = index" >
+                        <td>{{i +1}}</td>
+                        <td>{{item.DeviceCode}}</td>
+                        <td>{{item.CumulativeJobCount}}</td>
+                        <td>{{item.FaultDescription}}</td>
+                        <td>{{item.DateCreated}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

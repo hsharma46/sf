@@ -1,0 +1,111 @@
+<div class="border-shadow">
+  <div class="col-sm-12 grid_padding">
+    <div class="panel-heading">
+      <h3>
+        <i class="{{pageIcon}}" aria-hidden="true"></i>
+        {{MemberHeaderText}}
+      </h3>
+      <a class="btn btn-default pull-right" data-toggle="modal" data-target="#addMember" (click)="openModal()" data-backdrop="static">Add <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <div>
+      <!--<div class="chip" *ngFor="let member of  MemberList">
+          {{member.Name}}
+          <span class="closebtn" (click)="removeMember(member)">×</span>
+      </div>-->
+      <!--<app-grid [DisplayColumns]="displayColumns"
+                [GridData]="gridData"
+                [Loading]="isLoading"
+                [ReadAccess]="readAccess"
+                [ValueColumns]="valueColumns"
+                [DeleteAccess]="deleteAccess"
+                (notifyUpdate)="removeMember(obj)">
+      </app-grid>-->
+
+      <ul class="list">
+        <li>
+          <div>
+            <div class="row labelTxtInLine medium">
+              <div class="col-sm-12">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <th>S.No.</th>
+                      <th>Name</th>
+                      <th>Emp ID</th>
+                      <th>Email</th>
+                      <th class="text-center"><span>Action</span></th>
+                    </tr>
+                    <tr>
+                      <td [hidden]="!isLoading" colspan="7" style="text-align:center;">
+                        <i class="{{spinnerClass}}"></i>
+                      </td>
+                    </tr>
+                    <tr [hidden]="isLoading" *ngFor="let obj of MemberList; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{obj.User.FullName}}</td>
+                      <td>{{obj.User.UserName}}</td>
+                      <td>{{obj.User.Email}}</td>
+                      <td class="text-center"><span class="btn btn-info glyphicon glyphicon-remove" (click)="removeMember(obj)"></span></td>
+                    </tr>
+                    <tr [style.display]="!isLoading ?  noRecordFound ? 'table-row' : 'none' :'none'">
+                      <td [attr.colspan]="5" style="text-align:center;">
+                        {{noRecordFoundText}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="addMember" role="dialog" [style.display]="isModalVisible?'block':'none'">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="search.value='';closeMember()">&times;</button>
+        <h4>Add User</h4>
+      </div>
+      <ul class="tblRow">
+        <li>
+          <div class="tblCell"><input type="text" class="form-control" id="searchText" #search (keyup)="searchMember(search.value)" placeholder="Search"></div>
+
+          <div class="tblCell">
+            <button class="btn btn-default" (click)="search.value=''">Clear</button>
+          </div>
+        </li>
+      </ul>
+      <div class="modal-body maxHeight300">
+        <ul class="list-unstyled">
+          <li *ngFor="let user of userList">
+            <div class="media">
+              <div class="media-left">
+                <label class="customcheckradio">
+                  <input type="checkbox" [checked]="isChecked(user)" (change)="onCheckBoxChange(user,$event)">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="media-body">
+                <h4>
+                  <b>{{user.User.FullName}}</b>
+                  <span> - {{user.User.UserName}}</span>
+                </h4>
+                <p>{{user.User.Email}}</p>
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="mBtn" id="addmember" data-dismiss="modal" (click)="search.value='';submitMember()">Add</a>
+        <a class="mBtn" id="closeModal" data-dismiss="modal" (click)="search.value='';closeMember()">Close</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="border-shadow">
+  <div class="col-sm-12 grid_padding">
+    <div class="panel-heading">
+      <h3>
+        <i class="{{pageIcon}}" aria-hidden="true"></i>
+        Lines
+      </h3>
+      <a class="btn btn-default pull-right" routerLink="/line" *ngIf="writeAccess">Add <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <div class="">
+      <app-grid [DisplayColumns]="displayColumns"
+                [GridData]="gridData"
+                [Loading]="isLoading"
+                [PagingModel]="pagingModel"
+                [ReadAccess]="readAccess"
+                [ValueColumns]="valueColumns"
+                [SearchVisible]="searchVisible"
+                [UpdateAccess]="updateAccess"
+                (notifyView)="viewLine($event)"
+                (notifyUpdate)="editLine($event)"
+                (notifyPaging)="getLineByPaging($event)">
+        <!--[HyperLinkColumn]="hyperLinkColumn"-->
+      </app-grid>
+    </div>
+  </div>
+</div>
+
+

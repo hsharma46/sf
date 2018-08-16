@@ -1,0 +1,86 @@
+﻿
+#timeline {
+    list-style: none;
+    position: relative;
+}
+
+    #timeline:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 2px;
+        background-color: #4997cd;
+        left: 50%;
+        margin-left: -1.5px;
+    }
+
+    #timeline .clearFix {
+        clear: both;
+        height: 0;
+    }
+
+    #timeline .timeline-badge-left {
+        width: 60px;
+        height: 50%;
+        position: absolute;
+        border-bottom: 2px solid #4997cd;
+        right: 50%;
+    }
+
+    #timeline .timeline-badge-right {
+        width: 60px;
+        height: 50%;
+        position: absolute;
+        border-bottom: 2px solid #4997cd;
+        left: 50%;
+    }
+
+    #timeline .timeline-movement {
+        /*border-bottom: dashed 1px #4997cd;*/
+        position: relative;
+    }
+
+        #timeline .timeline-movement.timeline-movement-top {
+            height: 60px;
+        }
+
+        #timeline .timeline-movement .timeline-item {
+            padding: 20px 0;
+        }
+
+            #timeline .timeline-movement .timeline-item .timeline-panel {
+                border: 1px solid #d4d4d4;
+                border-radius: 3px;
+                background-color: #FFFFFF;
+                color: #666;
+                padding: 10px;
+                position: relative;
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                max-width: 200px;
+            }
+
+.border-Active {
+    border-left: 3px solid green !important;
+}
+
+.border-InActive {
+    border-left: 3px solid red !important;
+}
+
+#timeline .timeline-movement .timeline-item .timeline-panel .timeline-panel-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    #timeline .timeline-movement .timeline-item .timeline-panel .timeline-panel-ul li span.Active {
+        color: green;
+        font-size: 1.3em;
+    }
+
+    #timeline .timeline-movement .timeline-item .timeline-panel .timeline-panel-ul span.InActive {
+        color: red;
+        font-size: 1.3em;
+    }

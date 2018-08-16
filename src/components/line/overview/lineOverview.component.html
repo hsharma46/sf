@@ -1,0 +1,34 @@
+﻿<app-header #header></app-header>
+
+
+<!--<app-device-list [AsChild]="true"></app-device-list>-->
+
+<div class="border-shadow">
+    <div id="timeline" *ngIf="deviceListArray.length > 0">
+        <div class="row timeline-movement" *ngFor="let obj of deviceListArray">
+            <div class="timeline-badge-left"></div>
+            <div class="timeline-badge-right"></div>
+            <div class="col-sm-6  timeline-item" *ngFor="let device of obj; odd as isOdd">
+                <div class="row">
+                    <div class="col-sm-4" *ngIf="!!device.DeviceCode" [ngClass]="{'col-sm-offset-1':device.Position === 'Right' || isOdd,'col-sm-offset-7':device.Position === 'Left' || !isOdd}">
+                        <div class="timeline-panel" [ngClass]="{'border-Active':device.IsActive,'border-InActive':!device.IsActive}">
+                            <ul class="timeline-panel-ul">
+                                <li (click)="GotoDeviceOverview(device)" style="cursor:pointer;"><span [ngClass]="{'Active':device.IsActive,'InActive':!device.IsActive}">{{device.DeviceCode}}</span></li>
+                                <li><span class="causale">Active : {{device.IsActive?'True':'False'}} </span> </li>
+                                <li><span class="causale">Notification : {{device.EnableNotification?'Enable':'Disable'}} </span> </li>
+                                <!--<li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i></small></p> </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="deviceListArray.length==0">
+        <span style="font-size: small;float:right;margin-right: 10px;">
+            No Machine is added in the Line
+        </span>
+    </div>
+</div>
+
+

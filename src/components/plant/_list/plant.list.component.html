@@ -1,0 +1,29 @@
+<app-header #header></app-header>
+
+<div class="border-shadow">
+  <div class="col-sm-12 grid_padding">
+    <div class="panel-heading">
+      <h3>
+        <i class="{{pageIcon}}" aria-hidden="true"></i>
+        Plant List
+      </h3>
+      <a class="btn btn-default pull-right" routerLink="/plant" *ngIf="writeAccess">Add <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <div>
+      <app-grid [DisplayColumns]="displayColumns"
+                [GridData]="gridData"
+                [HyperLinkColumn]="hyperLinkColumn"
+                [Loading]="isLoading"
+                [PagingModel]="pagingModel"
+                [ReadAccess]="readAccess"
+                [SearchVisible]="searchVisible"
+                [ValueColumns]="valueColumns"
+                [UpdateAccess]="updateAccess"
+                (notifyView)="viewPlant($event)"
+                (notifyUpdate)="editPlant($event)"
+                (notifyPaging)="getPlantByPaging($event)">
+      </app-grid>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,9 @@
+span > b.highlight {
+margin-left:10px;
+}
+
+span > b.highlight:hover {
+    color: orange;
+    text-decoration: none;
+}
+

@@ -1,0 +1,66 @@
+<div class="border-shadow" [hidden]="Loading">
+    <div class="col" style="text-align:center;">
+        <i class="{{spinnerClass}}"></i>
+    </div>
+</div>
+<div class="border-shadow" [hidden]="!Loading">
+    <div class="col">
+        <div class="panel-heading">
+            <h3>
+                <i aria-hidden="true" class="{{pageIcon}}"></i>
+                Device : {{device.DeviceCode}}
+            </h3>
+            <a class="pull-right" href="{{reportLocation}}" style="margin-top: -21px;" target="_blank"><i aria-hidden="true" class="far fa-chart-bar"></i> Navigate To Reports</a>           
+        </div>
+    </div>
+    <div class="col">
+        <div class="row" style="padding:15px;margin-top: -15px;">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col reportHeading"><b>Device Details</b></div>
+                </div>
+                <div class="row" style="padding: 10px;margin-top: -10px;">
+                    <div class="col">
+                        <div class="row row-seprator">
+                            <div class="col-md-2 text-bold">Device Code</div>
+                            <div class="col-md-10">{{device.DeviceCode}}</div>
+                        </div>
+                        <div class="row row-seprator">
+                            <div class="col-md-2 text-bold">Description</div>
+                            <div class="col-md-10">{{device.Description}}</div>
+                        </div>
+                        <div class="row row-seprator">
+                            <div class="col-md-2 text-bold">Status</div>
+                            <div class="col-md-10">
+                                {{device.IsActive?'Active':'Not Active'}}
+                            </div>
+                        </div>
+                        <div class="row row-seprator">
+                            <div class="col-md-2 text-bold">Notification</div>
+                            <div class="col-md-10">
+                                {{device.EnableNotification ? 'Enable' : 'Disable'}}
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 10px;">
+                            <div class="col-md-2 text-bold">
+                                Parameter's
+                            </div>
+                            <div class="col-md-10">
+                                <span *ngIf="getNonDerivedParameter().length==0">
+                                    No Parameter's Assign Yet
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row" style="padding:25px;">
+                            <div class="col-md-3" *ngFor="let nonItem of getNonDerivedParameter()">
+                                <ul>
+                                    <li>{{nonItem.DisplayName}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

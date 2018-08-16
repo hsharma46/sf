@@ -1,0 +1,34 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid menuContainer">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="../../assets/logo.png" class="logoMargin" />
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right topHeaderMenuFloatRight">
+        <li><a class="menuUserName"><strong>{{userInfoService.getFullName()}}</strong></a></li>
+        <li><a (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" *ngIf="modules.length>0">
+      <ul class="nav navbar-nav menuMargin" *ngIf="menu.isMenuItemVisible()">
+        <li *ngFor="let module of modules" class="dropdown">
+          <a><span>{{module.ModuleName}}</span></a>
+          <div class="dropdown-content">
+            <ul class="list-unstyled">
+              <li *ngFor="let menu of visibleMenuOnly(module.Menus)">
+                <a routerLink='{{menu.MenuURL}}' routerLinkActive="active">
+                  <i aria-hidden="true" class="{{menu.MenuIcon}}"> </i> {{menu.MenuName}}
+                </a>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>   
+  </div>
+</div>

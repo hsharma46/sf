@@ -1,0 +1,88 @@
+
+
+<ul class="list">
+    <li>
+        <div>
+            <div class="labelTxtInLine medium">
+                <div class="border-shadow">
+                    <div class="col-sm-12 grid_padding">
+                        <form *ngIf="form" [formGroup]="form">
+                            <div class="container-fluid">
+                                <div class="panel-heading">
+                                    <h3>
+                                        <i class="{{pageIcon}}" aria-hidden="true"> </i>
+                                        {{headerText}}
+                                    </h3>
+                                </div>
+                                <div>
+                                  <div class="row">
+                                    <div class="col-sm-6" [ngClass]="validation.displayFieldCss('name',form,false)">
+                                      <div class="form-group">
+                                        <label for="Name" class="control-label required">Name</label>
+                                        <input type="text" class="form-control" [(ngModel)]="line.Name" (focusout)="isLineNameExists()" placeholder="Line Name" formControlName="name" />
+                                        <div style="color:#b94a48;" *ngIf="lineNameExists">
+                                          <span>Line Name Already Exists</span>
+                                        </div>
+                                        <app-validation-message [displayError]="validation.isFieldValid('name',form,false)"
+                                                                errorMsg="Please Enter name">
+                                        </app-validation-message>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6" [ngClass]="validation.displayFieldCss('description',form,false)">
+                                      <div class="form-group">
+                                        <label for="Description" class="control-label required">Description</label>
+                                        <textarea class="form-control" [(ngModel)]="line.Description" placeholder="Line Description" formControlName="description"></textarea>
+                                        <app-validation-message [displayError]="validation.isFieldValid('description',form,false)"
+                                                                errorMsg="Please Enter Description">
+                                        </app-validation-message>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <app-cmpyPlantMapping *ngIf="!!line.Id" #cpMapping  [IsCompanyDisabled]="!!lineId ? true : false" [IsPlantDisabled]="!!lineId ? true : false"></app-cmpyPlantMapping>                                  
+                                  <div class="row">
+
+                                    <div class="col-sm-12">
+                                      <div class="form-group">
+                                        <label for="Active" class="control-label required">Active</label>
+                                        <div>
+                                          <label class="radio-inline customcheckradio">
+                                            <input type="radio" [(ngModel)]="line.IsActive" [value]="true" [checked]="line.IsActive" formControlName="active">True
+                                            <span class="radiomark"></span>
+                                          </label>
+                                          <label class="radio-inline customcheckradio">
+                                            <input type="radio" [(ngModel)]="line.IsActive" [value]="false" [checked]="!line.IsActive" formControlName="active">False
+                                            <span class="radiomark"></span>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="btn btn-group pull-right">
+                                        <button class="btn btn-primary" (click)="onSubmit()">{{buttonText}}</button>
+                                        <button class="btn" (click)="reset()">Reset</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<ul class="list">
+    <li>
+        <div class="labelTxtInLine medium">
+            <div class="container-fluid">
+                <app-member *ngIf="!!lineId" [Id]="lineId" #member [MemberType]="memberType" [MemberHeaderText]="memberHeaderText"></app-member>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<app-device-list *ngIf="!!lineId" [AsChild]="true"></app-device-list>
